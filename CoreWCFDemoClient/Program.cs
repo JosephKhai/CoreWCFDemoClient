@@ -1,4 +1,6 @@
-﻿using ServiceReference1;
+﻿
+//using PareXPlusWCFServer;
+using PareXPlusWCFLocal;
 
 namespace CoreWCFDemoClient
 {
@@ -14,23 +16,58 @@ namespace CoreWCFDemoClient
         {
             while (true)
             {
-                var client = new EchoServiceClient(EchoServiceClient.EndpointConfiguration.BasicHttpBinding_IEchoService, "http://localhost:6000/EchoService/basichttp");
 
-                //Console.WriteLine("Enter a message!");
-                //string input = Console.ReadLine();
+                // Instantiate the Service wrapper specifying the binding and optionally the Endpoint URL. The BasicHttpBinding could be used instead.
 
-                //var simpleResult = await client.EchoAsync(input);
+                //var client = new EchoServiceClient(EchoServiceClient.EndpointConfiguration.BasicHttpBinding_IEchoService, "http://localhost:6000/EchoService/basichttp");
+                //var client = new PublisherClient(PublisherClient.EndpointConfiguration.BasicHttpBinding_Publisher, "http://parexplus-uat.pentanasolutions.com/PareXPlus.WCFService.Publisher/Publisher.svc");
+                //var client = new PublisherClient(PublisherClient.EndpointConfiguration.BasicHttpBinding_Publisher, "http://localhost:6000/Publisher.svc");
+
+                var client = new PublisherClient(PublisherClient.EndpointConfiguration.BasicHttpBinding_Publisher, "http://localhost:6000/Publisher.svc");
 
 
                 Console.WriteLine("Enter a message!");
                 string input2 = Console.ReadLine();
 
-                var msg = new EchoMessage()
+                //var msg = new EchoMessage()
+                //{
+                //    Text = input2
+                //};
+
+                //PublisherClient client = new PublisherClient();
+
+                var webService = new WebserviceProcess()
                 {
-                    Text = input2
+                    Entity_Type = input2,
+                    Entity_Name = "FIARNZ",
+                    Entity_Level1_Type = "Org",
+                    Entity_Level1_Name = "ATECO",
+                    Integration_Type = "FTP",
+                    Primary_File_Name = "FIARNZ-Factory Master-Fullset-20241010043001.csv",
+                    File_Location = "/ATECO/LDVPDC/Inbound/FactoryMaster/",
+                    Created_Date_Time = DateTime.Now,
+                    File_Type = "Factory Master",
+                    Format_Type = "Existing",
+                    Error_Message = ""
                 };
 
-                var msgResult = await client.ComplexEchoAsync(msg);
+
+                try
+                {
+
+                    var simpleResult = await client.NotifyInboundDataAsync(webService);
+                    Console.WriteLine(simpleResult);
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                finally
+                {
+                    client.Close();
+                }
+
             }
 
         }
