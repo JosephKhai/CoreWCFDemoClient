@@ -317,7 +317,7 @@ namespace PareXPlusWCFLocal
         {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_Publisher))
             {
-                return new System.ServiceModel.EndpointAddress("http://localhost:6000/Publisher.svc");
+                return new System.ServiceModel.EndpointAddress("https://localhost:6001/Publisher.svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
