@@ -1,5 +1,6 @@
 ﻿
 //using PareXPlusWCFServer;
+using System.ServiceModel;
 using PareXPlusWCFLocal;
 
 namespace CoreWCFDemoClient
@@ -23,7 +24,16 @@ namespace CoreWCFDemoClient
                 //var client = new PublisherClient(PublisherClient.EndpointConfiguration.BasicHttpBinding_Publisher, "http://parexplus-uat.pentanasolutions.com/PareXPlus.WCFService.Publisher/Publisher.svc");
                 //var client = new PublisherClient(PublisherClient.EndpointConfiguration.BasicHttpBinding_Publisher, "http://localhost:6000/Publisher.svc");
 
-                var client = new PublisherClient(PublisherClient.EndpointConfiguration.BasicHttpBinding_Publisher, "http://localhost:6000/Publisher.svc");
+                //var client = new PublisherClient(PublisherClient.EndpointConfiguration.BasicHttpBinding_Publisher, "http://localhost:6000/Publisher.svc");
+
+                var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport); // Transport mode for HTTPS
+                binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None; // or set as needed
+
+                // Configure the endpoint address
+                var endpointAddress = new EndpointAddress("https://localhost:6001/Publisher.svc");
+
+                // Initialize the PublisherClient with the binding and endpoint
+                var client = new PublisherClient(binding, endpointAddress);
 
 
                 Console.WriteLine("Enter a message!");
