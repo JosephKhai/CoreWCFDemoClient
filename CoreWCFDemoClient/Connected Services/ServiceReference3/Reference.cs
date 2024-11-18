@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PareXPlusWCFLocal
+namespace ServiceReference3
 {
     using System.Runtime.Serialization;
     
@@ -230,23 +230,23 @@ namespace PareXPlusWCFLocal
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://Pentana.PareXPlus.Interface/NotifyInboundData/", ConfigurationName="PareXPlusWCFLocal2.Publisher")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://Pentana.PareXPlus.Interface/NotifyInboundData/", ConfigurationName="ServiceReference3.Publisher")]
     public interface Publisher
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Pentana.PareXPlus.Interface/NotifyInboundData/Publisher/NotifyInboundData", ReplyAction="http://Pentana.PareXPlus.Interface/NotifyInboundData/Publisher/NotifyInboundDataR" +
             "esponse")]
-        System.Threading.Tasks.Task<PareXPlusWCFLocal.WebserviceProcess> NotifyInboundDataAsync(PareXPlusWCFLocal.WebserviceProcess processInfo);
+        System.Threading.Tasks.Task<ServiceReference3.WebserviceProcess> NotifyInboundDataAsync(ServiceReference3.WebserviceProcess processInfo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    public interface PublisherChannel : PareXPlusWCFLocal.Publisher, System.ServiceModel.IClientChannel
+    public interface PublisherChannel : ServiceReference3.Publisher, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    public partial class PublisherClient : System.ServiceModel.ClientBase<PareXPlusWCFLocal.Publisher>, PareXPlusWCFLocal.Publisher
+    public partial class PublisherClient : System.ServiceModel.ClientBase<ServiceReference3.Publisher>, ServiceReference3.Publisher
     {
         
         /// <summary>
@@ -289,7 +289,7 @@ namespace PareXPlusWCFLocal
         {
         }
         
-        public System.Threading.Tasks.Task<PareXPlusWCFLocal.WebserviceProcess> NotifyInboundDataAsync(PareXPlusWCFLocal.WebserviceProcess processInfo)
+        public System.Threading.Tasks.Task<ServiceReference3.WebserviceProcess> NotifyInboundDataAsync(ServiceReference3.WebserviceProcess processInfo)
         {
             return base.Channel.NotifyInboundDataAsync(processInfo);
         }
@@ -308,6 +308,7 @@ namespace PareXPlusWCFLocal
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
                 result.AllowCookies = true;
+                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.Transport;
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));

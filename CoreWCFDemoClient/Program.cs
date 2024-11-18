@@ -1,7 +1,7 @@
 ﻿
 //using PareXPlusWCFServer;
 using System.ServiceModel;
-using PareXPlusWCFLocal;
+using ServiceReference3;
 
 namespace CoreWCFDemoClient
 {
