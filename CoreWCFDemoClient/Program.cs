@@ -1,7 +1,7 @@
 ﻿
 //using PareXPlusWCFServer;
 using System.ServiceModel;
-using ServiceReference3;
+using ServiceReference4;
 
 namespace CoreWCFDemoClient
 {
@@ -30,7 +30,7 @@ namespace CoreWCFDemoClient
                 binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None; // or set as needed
 
                 // Configure the endpoint address
-                var endpointAddress = new EndpointAddress("https://localhost:6001/Publisher.svc");
+                var endpointAddress = new EndpointAddress("https://parexplus-uat.pentanasolutions.com/PAREXPLUS.WCFSERVICE.PUBLISHER/Publisher.svc");
 
                 // Initialize the PublisherClient with the binding and endpoint
                 var client = new PublisherClient(binding, endpointAddress);
@@ -50,11 +50,16 @@ namespace CoreWCFDemoClient
                 {
                     Entity_Type = input2,
                     Entity_Name = "FIARNZ",
+
                     Entity_Level1_Type = "Org",
                     Entity_Level1_Name = "ATECO",
+                    Entity_Level2_Type = "",
+                    Entity_Level2_Name = "",
+
                     Integration_Type = "FTP",
-                    Primary_File_Name = "FIARNZ-Factory Master-Fullset-20241010043001.csv",
-                    File_Location = "/ATECO/LDVPDC/Inbound/FactoryMaster/",
+                    Primary_File_Name = "FIARNZ-Factory Master-Fullset-20241014013001.csv",
+                    Secondary_File_Name = "FIARNZ-Factory Master-Fullset-20241014013001.csv",
+                    File_Location = "/CHINTEST/ATECO/LDVPDC/Inbound/FactoryMaster/",
                     Created_Date_Time = DateTime.Now,
                     File_Type = "Factory Master",
                     Format_Type = "Existing",
